@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5jko1vjkiy0r"]
+
+[ext_resource type="Texture2D" uid="uid://crfhssvqwuhbj" path="res://icon.svg" id="1_1qjqc"]
+[ext_resource type="Script" uid="uid://b6tnwjb6n1uni" path="res://Scripts/barricade.gd" id="1_kt4dc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kt4dc"]
+
+[node name="Barricade" type="StaticBody2D" groups=["barricade"]]
+scale = Vector2(0.5, 3)
+script = ExtResource("1_kt4dc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(6, 6)
+shape = SubResource("RectangleShape2D_kt4dc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_1qjqc")

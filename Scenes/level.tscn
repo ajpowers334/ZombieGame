@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://bntiv52uqam1s"]
+
+[ext_resource type="Script" uid="uid://6e3cjxnjh0q" path="res://Scripts/level.gd" id="1_81xng"]
+[ext_resource type="Texture2D" uid="uid://crfhssvqwuhbj" path="res://icon.svg" id="1_tumq0"]
+[ext_resource type="PackedScene" uid="uid://c5jko1vjkiy0r" path="res://Scenes/barricade.tscn" id="2_k5f4k"]
+[ext_resource type="PackedScene" uid="uid://n7pw47ujx2qm" path="res://Scenes/player.tscn" id="3_6phgx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k5f4k"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_81xng")
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(568, 699)
+scale = Vector2(20, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+scale = Vector2(6, 6)
+shape = SubResource("RectangleShape2D_k5f4k")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground"]
+texture = ExtResource("1_tumq0")
+
+[node name="Barricade" parent="." instance=ExtResource("2_k5f4k")]
+position = Vector2(370, 443)
+
+[node name="Barricade2" parent="." instance=ExtResource("2_k5f4k")]
+position = Vector2(795, 449)
+
+[node name="Player" parent="." instance=ExtResource("3_6phgx")]
+position = Vector2(576, 471)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]

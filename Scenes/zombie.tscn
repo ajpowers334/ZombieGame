@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bkpdbmqxhr1qh"]
+
+[ext_resource type="Texture2D" uid="uid://crfhssvqwuhbj" path="res://icon.svg" id="1_h3kin"]
+[ext_resource type="Script" uid="uid://bshnje0w24vnj" path="res://Scripts/zombie.gd" id="1_n70j1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n70j1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iyl7r"]
+
+[node name="Zombie" type="CharacterBody2D" groups=["zombie"]]
+scale = Vector2(1, 2)
+script = ExtResource("1_n70j1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(6, 6)
+shape = SubResource("RectangleShape2D_n70j1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_h3kin")
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(60, 0)
+scale = Vector2(6, 6)
+shape = SubResource("RectangleShape2D_iyl7r")
+
+[node name="AttackCooldownTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]
