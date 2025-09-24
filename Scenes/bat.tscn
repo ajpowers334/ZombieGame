@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://qlx0w7txuj8i"]
+
+[ext_resource type="Texture2D" uid="uid://crfhssvqwuhbj" path="res://icon.svg" id="1_j7be8"]
+[ext_resource type="Script" uid="uid://cfi5fy8lnb72l" path="res://Scripts/bat.gd" id="1_jckqh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jckqh"]
+
+[node name="Bat" type="Area2D"]
+scale = Vector2(0.15, 2)
+script = ExtResource("1_jckqh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -65)
+scale = Vector2(6, 6)
+shape = SubResource("RectangleShape2D_jckqh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -65)
+texture = ExtResource("1_j7be8")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
