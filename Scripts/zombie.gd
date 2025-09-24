@@ -12,6 +12,10 @@ var attack_cooldown = 1.0  # Time between attacks in seconds
 var can_attack = true
 var current_target = null
 
+var can_move = true
+
+signal zombiedied
+
 func _ready():
 	player = get_tree().get_first_node_in_group("player")
 	
@@ -26,11 +30,11 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 	
 	move_and_slide()
-	
-	if player != null:
-		pursue_player()
-	else:
-		print("[ZOMBIE] Player not found")
+	if can_move:
+		if player != null:
+			pursue_player()
+		else:
+			print("[ZOMBIE] Player not found")
 		
 	# Check if we can attack a target
 	if current_target != null and can_attack:
@@ -78,7 +82,15 @@ func move_left():
 
 func move_right():
 	velocity.x = speed
-	scale.x = abs(scale.x) 
+	scale.x = abs(scale.x)
+
+func knockback():
+	velocity.x = 250 * player.get_facing_direction()
+	velocity.y = -250
+	can_move = false
+	await get_tree().create_timer(0.5).timeout
+	can_move = true
 
 func die():
+	emit_signal("zombiedied")
 	queue_free()
