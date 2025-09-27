@@ -23,3 +23,9 @@ offset_left = -533.0
 offset_top = -143.5
 offset_right = -493.0
 offset_bottom = -120.5
+
+[node name="wave_label" type="Label" parent="Camera2D"]
+offset_left = 316.0
+offset_top = -140.5
+offset_right = 356.0
+offset_bottom = -117.5
